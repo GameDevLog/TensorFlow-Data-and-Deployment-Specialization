@@ -36,6 +36,15 @@
             loss: "categoricalCrossentropy",
             optimizer: tf.train.adam(0.06)
         });
+
+        await model.fitDataset(convertedData, {
+            epochs: 100,
+            callbacks: {
+                onEpochEnd: async (epoch, logs) => {
+                    console.log("Epoch: " + epoch + " Loss: " + logs.loss);
+                }
+            }
+        });
     }
 </script>
 
